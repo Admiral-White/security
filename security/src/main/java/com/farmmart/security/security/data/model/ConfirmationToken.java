@@ -21,9 +21,13 @@ public class ConfirmationToken {
     private User user;
 
 
-    ConfirmationToken(User user) {
+    public ConfirmationToken(User user) {
         this.confirmationToken = UUID.randomUUID().toString();
         this.createdDate = LocalDate.now();
         this.user = user;
+    }
+
+    public ConfirmationToken() {
+
     }
 }
