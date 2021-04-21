@@ -29,10 +29,10 @@ public class User implements UserDetails {
     private String password;
 
 
-    @Builder.Default
+
     private UserRole userRole = UserRole.USER;
 
-    @Builder.Default
+
     private Boolean enabled = false;
 
 

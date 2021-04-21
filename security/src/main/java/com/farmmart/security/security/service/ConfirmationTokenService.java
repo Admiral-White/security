@@ -6,6 +6,8 @@ import com.farmmart.security.security.data.repository.ConfirmationTokenRepositor
 import com.farmmart.security.security.data.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ConfirmationTokenService {
 
@@ -44,4 +46,15 @@ public class ConfirmationTokenService {
     }
 
 
+    // i created the method below, lets hope it works.
+
+    public Optional<ConfirmationToken> findConfirmationTokenByToken(String token){
+
+        confirmationTokenRepository.findAll();
+
+        return null;
+
+
+
+    }
 }

@@ -29,6 +29,12 @@ public class UserService implements UserDetailsService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+    
+
+    public UserService() {
+
+        userRepository = null;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -78,4 +84,15 @@ public class UserService implements UserDetailsService {
 
     }
 
+    public void confirmUser(ConfirmationToken confirmationToken) {
+
+        final User user = confirmationToken.getUser();
+
+        user.setEnabled(true);
+
+        userRepository.save(user);
+
+        confirmationTokenService.deleteConfirmationToken(confirmationToken.getId());
+
+    }
 }
