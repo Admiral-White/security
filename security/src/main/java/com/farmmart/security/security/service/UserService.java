@@ -5,6 +5,8 @@ import com.farmmart.security.security.data.model.ConfirmationToken;
 import com.farmmart.security.security.data.model.User;
 import com.farmmart.security.security.data.repository.ConfirmationTokenRepository;
 import com.farmmart.security.security.data.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -54,6 +56,25 @@ public class UserService implements UserDetailsService {
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
+
+    }
+
+    public void sendConfirmationMail(String userMail, String token){
+
+
+        EmailSenderService emailSenderService = new EmailSenderService();
+
+        final SimpleMailMessage mailMessage = new SimpleMailMessage();
+
+        mailMessage.setTo(userMail);
+
+        mailMessage.setSubject("Mail confirmation link");
+
+        mailMessage.setFrom("<MAIL>");
+
+        mailMessage.setText("Thanks for registering. please click on the link below to activate your account." + "http://localhost:8080/sign-up/confirm?token=" + token);
+
+        emailSenderService.sendEmail(mailMessage);
 
     }
 
